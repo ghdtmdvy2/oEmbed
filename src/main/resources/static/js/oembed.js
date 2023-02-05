@@ -29,7 +29,6 @@ function resultHtml(data) {
             } else if (key === "thumbnail_url"){
                 html+="<div>" + "<span style='height: 500px;'>thumbnail_url<br/>(" + data.thumbnail_width + "/" + data.thumbnail_height + ")</span><span style='height: 500px;'><a href='" +data.thumbnail_url+"'>" + data.thumbnail_url + "</a><br/><br/><img src='"+data.thumbnail_url+"'/></span></div>";
             } else if (key === "author_url" || key === "provider_url"){
-                //
                 html +=  "<div>" + "<span>" + key + "</span><span>" +"<a href="+ value + ">"+value+"</a></span></div>"
             }else {
                 html += "<div> " + "<span>"+ key +"</span><span style='font-weight: bold;'>" + value + "</span></div>"
@@ -44,7 +43,6 @@ function resultHtml(data) {
             } else if (key === "thumbnail_url"){
                 html+="<div>" + "<span style='height: "+data.thumbnail_height+"px; margin-bottom: 30'>thumbnail_url<br/>(" + data.thumbnail_width + "/" + data.thumbnail_height + ")</span><span style='height: "+data.thumbnail_height+"px; margin-bottom: 30'><a href='" +data.thumbnail_url+"'>" + data.thumbnail_url + "</a><br/><br/><img src='"+data.thumbnail_url+"'/></span></div>";
             } else if (key === "author_url" || key === "provider_url" || key === "url"){
-                //
                 html +=  "<div>" + "<span>" + key + "</span><span>" +"<a href="+ value + ">"+value+"</a></span></div>"
             }else {
                 html += "<div> " + "<span>"+ key +"</span><span style='font-weight: bold;'>" + value + "</span></div>"
