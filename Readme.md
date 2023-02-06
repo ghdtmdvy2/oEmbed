@@ -38,12 +38,51 @@
       - [https://developers.facebook.com/docs/instagram/oembed/](https://developers.facebook.com/docs/instagram/oembed/)
   - Response : oEmbed json
 
-### **Service**
-
-**1) OEmbedService**
+### **Service : OEmbedService**
 
 OEmbedService는 oEmbed data를 관리를 담당합니다.
+## Test
 
+### **ControllerTest :**`OEmbedControllerTest`
+
+**Test1**
+
+- 함수명 : `showSearch`
+  - 테스트 내용 : /oEmbed/ get 요청
+  - 결과물 : HTTP 상태 코드 2xx (성공 응답)
+
+**Test2**
+
+- 함수명 : `search`
+  - 테스트 내용 : body에 url을 담아 /oEmbed/ post 요청
+  - 결과물 : HTTP 상태 코드 2xx (성공 응답)
+
+### Service**Test :**`OEmbedServiceTest`
+
+**Test1**
+
+- 함수명 : `vimeoFindOEmbedData`
+  - 테스트 내용 : vimeo oEmbed data 요청
+  - 결과물 : vimeo oEmbed json
+
+**Test2**
+
+- 함수명 : `youtubeFindOEmbedData`
+  - 테스트 내용 : youtube oEmbed data 요청
+  - 결과물 : youtube oEmbed json
+
+**Test3**
+
+- 함수명 : `twitterFindOEmbedData`
+  - 테스트 내용 : twitter oEmbed data 요청
+  - 결과물 : twitter oEmbed json
+
+**Test4**
+
+- 함수명 : `InvalidURLFindOEmbedData`
+  - 테스트 내용 : 유효하지 않은 URL oEmbed data 요청
+  - 결과물 : error json
+  
 ### Entities
 
 #### 1. Youtube oEmbed 정보

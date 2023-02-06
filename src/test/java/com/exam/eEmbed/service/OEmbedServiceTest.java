@@ -90,7 +90,7 @@ class OEmbedServiceTest {
         assertThat(twitterOEmbedJsonData.get("height")).isNull();
     }
     @Test
-    @DisplayName("유효하지 않은 URL oEmbed data 요청")
+        @DisplayName("유효하지 않은 URL oEmbed data 요청")
     void InvalidURLFindOEmbedData() {
         // Given
         final String youtubeUrl = "https://Invalid.com/";
