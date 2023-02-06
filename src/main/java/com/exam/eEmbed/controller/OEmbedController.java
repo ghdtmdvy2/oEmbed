@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequiredArgsConstructor
 public class OEmbedController {
     private final OEmbedService oEmbedService;
-    @GetMapping("/search")
+    @GetMapping("/")
     public String showSearch(){
         return "oEmbed";
     }
-    @PostMapping("/search")
+    @PostMapping("/")
     @ResponseBody
     public JSONObject search(String url){
         JSONObject jsonObject = oEmbedService.urlConnector(url);

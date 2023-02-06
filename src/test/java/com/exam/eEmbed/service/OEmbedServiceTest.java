@@ -13,26 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class OEmbedServiceTest {
     @Autowired
     OEmbedService oEmbedService;
-    @Test
-    void youtubeUrlConnector() {
-        // Given
-        final String youtubeUrl = "https://www.youtube.com/watch?v=dBD54EZIrZo";
-        // when
-        JSONObject youtubeOEmbedJsonData = oEmbedService.urlConnector(youtubeUrl);
-        // then
-        assertThat(youtubeOEmbedJsonData.get("author_name").equals("핑크퐁 (인기 동요・동화)")).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("access_url").equals("youtube")).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("title").equals("언제 어디서나! 핑크퐁 BEST 모음 80분 | 차에서 듣는 동요 | 아기상어, 상어가족 외 70곡 | + 모음집 | 핑크퐁! 인기동요")).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("type").equals("video")).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("thumbnail_url").equals("https://i.ytimg.com/vi/dBD54EZIrZo/hqdefault.jpg")).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("version").equals("1.0")).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("thumbnail_height").equals(360L)).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("html").equals("<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/dBD54EZIrZo?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen title=\"언제 어디서나! 핑크퐁 BEST 모음 80분 | 차에서 듣는 동요 | 아기상어, 상어가족 외 70곡 | + 모음집 | 핑크퐁! 인기동요\"></iframe>")).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("width").equals(200L)).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("thumbnail_width").equals(480L)).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("provider_name").equals("YouTube")).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("height").equals(113L)).isTrue();
-    }
+
     @Test
     void vimeoUrlConnector() {
         // Given
@@ -61,6 +42,26 @@ class OEmbedServiceTest {
         assertThat(vimeoOEmbedJsonData.get("height").equals(480L)).isTrue();
         assertThat(vimeoOEmbedJsonData.get("upload_date").equals("2011-02-18 05:31:51")).isTrue();
         assertThat(vimeoOEmbedJsonData.get("video_id").equals(20097015L)).isTrue();
+    }
+    @Test
+    void youtubeUrlConnector() {
+        // Given
+        final String youtubeUrl = "https://www.youtube.com/watch?v=dBD54EZIrZo";
+        // when
+        JSONObject youtubeOEmbedJsonData = oEmbedService.urlConnector(youtubeUrl);
+        // then
+        assertThat(youtubeOEmbedJsonData.get("author_name").equals("핑크퐁 (인기 동요・동화)")).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("access_url").equals("youtube")).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("title").equals("언제 어디서나! 핑크퐁 BEST 모음 80분 | 차에서 듣는 동요 | 아기상어, 상어가족 외 70곡 | + 모음집 | 핑크퐁! 인기동요")).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("type").equals("video")).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("thumbnail_url").equals("https://i.ytimg.com/vi/dBD54EZIrZo/hqdefault.jpg")).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("version").equals("1.0")).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("thumbnail_height").equals(360L)).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("html").equals("<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/dBD54EZIrZo?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen title=\"언제 어디서나! 핑크퐁 BEST 모음 80분 | 차에서 듣는 동요 | 아기상어, 상어가족 외 70곡 | + 모음집 | 핑크퐁! 인기동요\"></iframe>")).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("width").equals(200L)).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("thumbnail_width").equals(480L)).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("provider_name").equals("YouTube")).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("height").equals(113L)).isTrue();
     }
     @Test
     void twitterUrlConnector() {

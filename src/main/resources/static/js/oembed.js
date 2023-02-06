@@ -2,7 +2,7 @@ function search(){
     const url = document.getElementById("search").value;
     $.ajax({
         type: 'POST',
-        url: "/oEmbed/search",
+        url: "/oEmbed/",
         data:{"url":url},
         dataType:'json',
         success:function (data){

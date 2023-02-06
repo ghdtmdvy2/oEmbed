@@ -22,7 +22,7 @@ class OEmbedControllerTest {
     @Test
     public void showSearch() throws Exception {
         ResultActions resultActions = mockMvc.
-                perform(get("/oEmbed/search"))
+                perform(get("/oEmbed/"))
                 .andDo(print());
         resultActions
                 .andExpect(status().is2xxSuccessful())
@@ -32,7 +32,7 @@ class OEmbedControllerTest {
     @Test
     public void search() throws Exception {
         ResultActions resultActions = mockMvc.
-                perform(post("/oEmbed/search")
+                perform(post("/oEmbed/")
                         .param("url","https://www.youtube.com/watch?v=dBD54EZIrZo"))
                 .andDo(print());
         resultActions
