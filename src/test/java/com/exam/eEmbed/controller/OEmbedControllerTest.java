@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -28,5 +29,15 @@ class OEmbedControllerTest {
                 .andExpect(handler().handlerType(OEmbedController.class))
                 .andExpect(handler().methodName("showSearch"));
     }
-
+    @Test
+    public void search() throws Exception {
+        ResultActions resultActions = mockMvc.
+                perform(post("/oEmbed/search")
+                        .param("url","https://www.youtube.com/watch?v=dBD54EZIrZo"))
+                .andDo(print());
+        resultActions
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(handler().handlerType(OEmbedController.class))
+                .andExpect(handler().methodName("search"));
+    }
 }
