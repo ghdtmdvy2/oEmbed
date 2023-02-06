@@ -59,9 +59,9 @@ public class Util {
             return data;
         }
         // "를 \"로 바꿔주는 함수
-        private static String organizeQuote(String data, int titleLastIndex, int authorNameIndex) {
+        private static String organizeQuote(String data, int firstIndexFixed, int lastIndexFixed) {
             int cnt = 0;
-            for (int j = titleLastIndex; j < authorNameIndex + cnt; j++){
+            for (int j = firstIndexFixed; j < lastIndexFixed + cnt; j++){
                 if (data.charAt(j) == '\"') {
                     data = data.substring(0,j) + "\\\"" + data.substring( j + 1);
                     cnt++;
