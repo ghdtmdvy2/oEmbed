@@ -10,7 +10,7 @@
 
 - 2계층 - 컨트롤러, 서비스
 
-### **Controller : MainController**
+### **Controller : `MainController`**
 
 **APIs**
 
@@ -18,7 +18,7 @@
     - oEmbed 데이터를 검색할 수 있는 곳으로 redirect 해주는 곳.
     - Response : /oEmbed/ 로 redirect
 
-### **Controller : OEmbedController**
+### **Controller : `OEmbedController`**
 
 **APIs**
 
@@ -41,7 +41,7 @@
       
   - Response : oEmbed json
 
-### **Service : OEmbedService**
+### **Service : `OEmbedService`**
 
 OEmbedService는 oEmbed data를 관리를 담당합니다.
 ## Test
