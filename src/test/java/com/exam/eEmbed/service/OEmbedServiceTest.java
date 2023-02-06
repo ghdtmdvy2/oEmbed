@@ -2,6 +2,7 @@ package com.exam.eEmbed.service;
 
 import com.exam.eEmbed.OEmbedTaskApplication;
 import org.json.simple.JSONObject;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,7 @@ class OEmbedServiceTest {
     OEmbedService oEmbedService;
 
     @Test
+    @DisplayName("vimeo oEmbed data 요청")
     void vimeoFindOEmbedData() {
         // Given
         final String vimeoUrl = "https://vimeo.com/20097015";
@@ -43,6 +45,7 @@ class OEmbedServiceTest {
         assertThat(vimeoOEmbedJsonData.get("video_id").equals(20097015L)).isTrue();
     }
     @Test
+    @DisplayName("youtube oEmbed data 요청")
     void youtubeFindOEmbedData() {
         // Given
         final String youtubeUrl = "https://www.youtube.com/watch?v=dBD54EZIrZo";
@@ -63,6 +66,7 @@ class OEmbedServiceTest {
         assertThat(youtubeOEmbedJsonData.get("height").equals(113L)).isTrue();
     }
     @Test
+    @DisplayName("twitter oEmbed data 요청")
     void twitterFindOEmbedData() {
         // Given
         final String twitterUrl = "https://twitter.com/hellopolicy/status/867177144815804416";
@@ -86,6 +90,7 @@ class OEmbedServiceTest {
         assertThat(twitterOEmbedJsonData.get("height")).isNull();
     }
     @Test
+    @DisplayName("유효하지 않은 URL oEmbed data 요청")
     void InvalidURLFindOEmbedData() {
         // Given
         final String youtubeUrl = "https://Invalid.com/";
