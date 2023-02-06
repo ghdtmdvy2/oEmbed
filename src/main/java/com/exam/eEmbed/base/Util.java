@@ -38,16 +38,34 @@ public class Util {
             // youtube 의 oEmbed 값에서 html 값이 "가 \"로 안와서 json 으로 파싱하는데 에러가 생김.
             // 그래서 html 값에서 "를 \"로 바꿔주는 곳.
             if (site.equals("youtube.com/")) {
-                int htmlFindIndex = data.indexOf("\"html\":\"");
-                int htmlLastIndex = htmlFindIndex + "\"html\":\"".length();
-                int rightArrowIndex = data.lastIndexOf(">\"");
-                int cnt = 0;
-                for (int i = htmlLastIndex; i < rightArrowIndex + cnt; i++){
-                    if (data.charAt(i) == '\"') {
-                        data = data.substring(0,i) + "\\\"" + data.substring( i + 1);
-                        cnt++;
-                        i++;
+                String [] key = new String[]{"\"title\"", "\"author_name\"", "html"};
+                for(int i=0; i<key.length; i+=2){
+                    if(i== key.length-1){
+                        int htmlFindIndex = data.indexOf("\"html\":\"");
+                        int htmlLastIndex = htmlFindIndex + "\"html\":\"".length();
+                        int rightArrowIndex = data.lastIndexOf(">\"");
+                        data = organizeQuote(data, htmlLastIndex, rightArrowIndex);
                     }
+                    else {
+                        int titleFindIndex = data.indexOf(key[i]);
+                        int titleLastIndex = titleFindIndex + "title".length() + 4;
+                        int authorNameIndex = data.indexOf(key[i+1])-2;
+                        data = organizeQuote(data, titleLastIndex, authorNameIndex);
+                    }
+
+                }
+
+            }
+            return data;
+        }
+        // "를 \"로 바꿔주는 함수
+        private static String organizeQuote(String data, int titleLastIndex, int authorNameIndex) {
+            int cnt = 0;
+            for (int j = titleLastIndex; j < authorNameIndex + cnt; j++){
+                if (data.charAt(j) == '\"') {
+                    data = data.substring(0,j) + "\\\"" + data.substring( j + 1);
+                    cnt++;
+                    j++;
                 }
             }
             return data;
