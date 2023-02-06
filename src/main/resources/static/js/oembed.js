@@ -23,7 +23,10 @@ function resultHtml(data) {
     }
     else if(data.access_url=="youtube") {
         $.each(data, function(key, value){
-            if (key === "html") {
+            if (key === "access_url") {
+                return true;
+            }
+            else if (key === "html") {
                 html+= "<div>" + "<span style='height:200px'>html<br/>(" + data.width + "/" + data.height + ")</span>" +
                     "<span style='height:200px;'><xmp>" + data.html + "</xmp>"+ data.html + "</span></div>";
             } else if (key === "thumbnail_url"){
