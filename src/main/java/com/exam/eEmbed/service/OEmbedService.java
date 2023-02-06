@@ -12,18 +12,21 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class OEmbedService {
-    private final String youtube = "youtube.com";
-    private final String twitter = "twitter.com";
-    private final String vimeo = "vimeo.com";
+    private final String youtube = "youtube.com/";
+    private final String youtubeOEmbedUrl = "https://www.youtube.com/oembed?url=https://youtube.com/";
+    private final String twitter = "twitter.com/";
+    private final String twitterOEmbedUrl = "https://publish.twitter.com/oembed?url=https://twitter.com/";
+    private final String vimeo = "vimeo.com/";
+    private final String vimeoOEmbedUrl = "https://vimeo.com/api/oembed.json?url=https://vimeo.com/";
     private final DataHandler dataHandler;
     /**
-      각 url 마다 oEmbed data 를 json 형태로 값을 받기 위한 처리.
+        각 url 마다 oEmbed data 를 json 형태로 값을 받기 위한 처리.
      **/
     public JSONObject urlConnector(String url) {
         try {
-            if (url.contains(youtube)) return Util.Handler.youtube(url, dataHandler);
-            else if (url.contains(twitter)) return Util.Handler.twitter(url, dataHandler);
-            else if (url.contains(vimeo)) return Util.Handler.vimeo(url, dataHandler);
+            if (url.contains(youtube)) return Util.Handler.convertOEmbedDataIntoJson(url, youtubeOEmbedUrl ,youtube,dataHandler);
+            else if (url.contains(twitter)) return Util.Handler.convertOEmbedDataIntoJson(url,twitterOEmbedUrl,twitter, dataHandler);
+            else if (url.contains(vimeo)) return Util.Handler.convertOEmbedDataIntoJson(url,vimeoOEmbedUrl,vimeo, dataHandler);
         } catch (NullPointerException e){
             e.printStackTrace();
         } catch (IOException e) {

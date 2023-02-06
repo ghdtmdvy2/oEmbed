@@ -9,12 +9,35 @@ import java.io.IOException;
 public class Util {
     public static class Json {
         /**
-            oEmbed 에서 받아온 데이터를 json 형태로 바꿔주는 함수.
+            data 를 json 형태로 바꿔주는 함수.
         **/
-        public static JSONObject parsing(String data, String site) throws ParseException {
-            // youtube 의 oEmbed 값에서 html 값이 "가 \"로 안와서 json 파싱하는데 에러가 생김.
+        public static JSONObject parse(String data, String site) throws ParseException {
+            JSONObject jsonobj;
+            JSONParser parser = new JSONParser();
+            jsonobj = (JSONObject) parser.parse(data);
+            jsonobj.put("access_url",site);
+            return jsonobj;
+        }
+    }
+    public static class Handler {
+        /**
+            각 사이트마다 oEmbed 데이터를 json 형태로 반환하는 함수.
+         **/
+        public static JSONObject convertOEmbedDataIntoJson(String url, String oEmbedUrl, String site, DataHandler dataHandler) throws IOException, ParseException {
+            String parameter = url.split(site)[1];
+            String oEmbedDataUrl = oEmbedUrl + parameter;
+            String data = dataHandler.oEmbedUrlGetData(oEmbedDataUrl);
+            data = Handler.makeEasyProcessJson(data,site);
+            JSONObject jsonData = Json.parse(data,site);
+            return jsonData;
+        }
+        /**
+            json 형태로 가공하기 쉽게 형태를 바꿔주는 함수.
+         **/
+        private static String makeEasyProcessJson(String data, String site) {
+            // youtube 의 oEmbed 값에서 html 값이 "가 \"로 안와서 json 으로 파싱하는데 에러가 생김.
             // 그래서 html 값에서 "를 \"로 바꿔주는 곳.
-            if (site.equals("youtube")) {
+            if (site.equals("youtube.com/")) {
                 int htmlFindIndex = data.indexOf("\"html\":\"");
                 int htmlLastIndex = htmlFindIndex + "\"html\":\"".length();
                 int rightArrowIndex = data.lastIndexOf(">\"");
@@ -27,38 +50,6 @@ public class Util {
                     }
                 }
             }
-            JSONObject jsonobj;
-            JSONParser parser = new JSONParser();
-            jsonobj = (JSONObject) parser.parse(data);
-            jsonobj.put("access_url",site);
-            return jsonobj;
-        }
-    }
-    public static class Handler {
-        /**
-          각 사이트마다 Oembed 데이터를 받을 수 있는 곳을 알려주는 함수.
-         **/
-        public static JSONObject youtube(String url, DataHandler dataHandler) throws IOException, ParseException {
-            String firstUrl = "https://www.youtube.com/oembed?url=https://youtube.com/";
-            String twoUrl = url.split("youtube.com/")[1];
-            String data = oEmbedDataUnicodeDecoding(firstUrl,twoUrl,dataHandler);
-            return Json.parsing(data,"youtube");
-        }
-        public static JSONObject twitter(String url, DataHandler dataHandler) throws IOException, ParseException {
-            String firstUrl = "https://publish.twitter.com/oembed?url=https://twitter.com/";
-            String twoUrl = url.split("twitter.com/")[1];
-            String data = oEmbedDataUnicodeDecoding(firstUrl,twoUrl,dataHandler);
-            return Json.parsing(data,"twitter");
-        }
-        public static JSONObject vimeo(String url, DataHandler dataHandler) throws IOException, ParseException {
-            String firstUrl = "https://vimeo.com/api/oembed.json?url=https://vimeo.com/";
-            String twoUrl = url.split("vimeo.com/")[1];
-            String data = oEmbedDataUnicodeDecoding(firstUrl,twoUrl,dataHandler);
-            return Json.parsing(data,"vimeo");
-        }
-        private static String oEmbedDataUnicodeDecoding(String firstUrl, String twoUrl, DataHandler dataHandler) throws IOException {
-            String oEmbedDataUrl = firstUrl + twoUrl;
-            String data = dataHandler.getData(oEmbedDataUrl);
             return data;
         }
     }

@@ -13,7 +13,7 @@ public class DataHandler{
     /**
         oEmbed URL 을 통해 내장된 콘텐츠(데이터) 반환하는 함수.
      **/
-    public String getData(String url) throws IOException {
+    public String oEmbedUrlGetData(String url) throws IOException {
         String data = null;
         URL uri = new URL(url);
         HttpURLConnection conn = (HttpURLConnection) uri.openConnection();
@@ -25,14 +25,14 @@ public class DataHandler{
         while(br.ready()) {
             sb.append(br.readLine());
         }
-        data = convertString(String.valueOf(sb));
+        data = changeUnicodeToString(String.valueOf(sb));
         return data;
     }
 
     /**
      유니코드를 String 으로 바꿔주는 함수.
      **/
-    public  String convertString(String val) {
+    public  String changeUnicodeToString(String val) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < val.length(); i++) {
             if ('\\' == val.charAt(i) && 'u' == val.charAt(i + 1)) {

@@ -14,10 +14,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequiredArgsConstructor
 public class OEmbedController {
     private final OEmbedService oEmbedService;
+    /**
+        oEmbed 데이터를 검색할 수 있는 곳
+     **/
     @GetMapping("/")
     public String showSearch(){
         return "oEmbed";
     }
+    /**
+        oEmbed 데이터를 가져오는 곳
+     **/
     @PostMapping("/")
     @ResponseBody
     public JSONObject search(String url){

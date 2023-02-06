@@ -21,7 +21,7 @@ function resultHtml(data) {
         alert(data.msg)
         return;
     }
-    else if(data.access_url=="youtube") {
+    else if(data.access_url=="youtube.com/") {
         $.each(data, function(key, value){
             if (key === "access_url") {
                 return true;
@@ -38,9 +38,12 @@ function resultHtml(data) {
             }
         });
     }
-    else if(data.access_url=="twitter"){
+    else if(data.access_url=="twitter.com/"){
         $.each(data, function(key, value){
-            if (key === "html") {
+            if (key === "access_url") {
+                return true;
+            }
+            else if (key === "html") {
                 html+= "<div>" + "<span style='height:1500px'>html<br/>(" + data.width + "/" + data.height + ")</span>" +
                     "<span style='height:1500px;'><xmp style='display: inline-table;'>" + data.html + "</xmp>"+ data.html + "</span></div>";
             } else if (key === "thumbnail_url"){
@@ -52,9 +55,12 @@ function resultHtml(data) {
             }
         });
     }
-    else if(data.access_url=="vimeo"){
+    else if(data.access_url=="vimeo.com/"){
         $.each(data, function(key, value){
-            if (key === "html") {
+            if (key === "access_url") {
+                return true;
+            }
+            else if (key === "html") {
                 html+= "<div>" + "<span style='height:"+data.height+"px; margin-bottom: 75'>html<br/>(" + data.width + "/" + data.height + ")</span>" +
                     "<span style='height:"+data.height+"px; margin-bottom: 75'><xmp>" + data.html + "</xmp>"+ data.html + "</span></div>";
             } else if (key === "thumbnail_url"){

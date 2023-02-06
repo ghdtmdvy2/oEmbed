@@ -24,7 +24,7 @@ class OEmbedServiceTest {
         assertThat(vimeoOEmbedJsonData.get("author_name").equals("Depict_tk")).isTrue();
         assertThat(vimeoOEmbedJsonData.get("account_type").equals("basic")).isTrue();
         assertThat(vimeoOEmbedJsonData.get("thumbnail_url_with_play_button").equals("https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F128068226-3e88e664fc0805498112c738d3a44fe6319a6385f63e3a2af526b35440a15ed5-d_640&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png")).isTrue();
-        assertThat(vimeoOEmbedJsonData.get("access_url").equals("vimeo")).isTrue();
+        assertThat(vimeoOEmbedJsonData.get("access_url").equals("vimeo.com/")).isTrue();
         assertThat(vimeoOEmbedJsonData.get("description").equals("concepts: playzoo\n" +
                 "codes: purpleworks\n" +
                 "\n" +
@@ -51,7 +51,7 @@ class OEmbedServiceTest {
         JSONObject youtubeOEmbedJsonData = oEmbedService.urlConnector(youtubeUrl);
         // then
         assertThat(youtubeOEmbedJsonData.get("author_name").equals("핑크퐁 (인기 동요・동화)")).isTrue();
-        assertThat(youtubeOEmbedJsonData.get("access_url").equals("youtube")).isTrue();
+        assertThat(youtubeOEmbedJsonData.get("access_url").equals("youtube.com/")).isTrue();
         assertThat(youtubeOEmbedJsonData.get("title").equals("언제 어디서나! 핑크퐁 BEST 모음 80분 | 차에서 듣는 동요 | 아기상어, 상어가족 외 70곡 | + 모음집 | 핑크퐁! 인기동요")).isTrue();
         assertThat(youtubeOEmbedJsonData.get("type").equals("video")).isTrue();
         assertThat(youtubeOEmbedJsonData.get("thumbnail_url").equals("https://i.ytimg.com/vi/dBD54EZIrZo/hqdefault.jpg")).isTrue();
@@ -73,7 +73,7 @@ class OEmbedServiceTest {
         assertThat(twitterOEmbedJsonData.get("author_name").equals("대한민국 정부")).isTrue();
         assertThat(twitterOEmbedJsonData.get("author_url").equals("https://twitter.com/hellopolicy")).isTrue();
         assertThat(twitterOEmbedJsonData.get("cache_age").equals("3153600000")).isTrue();
-        assertThat(twitterOEmbedJsonData.get("access_url").equals("twitter")).isTrue();
+        assertThat(twitterOEmbedJsonData.get("access_url").equals("twitter.com/")).isTrue();
         assertThat(twitterOEmbedJsonData.get("width").equals(550L)).isTrue();
         assertThat(twitterOEmbedJsonData.get("html").equals("""
                 <blockquote class="twitter-tweet"><p lang="ko" dir="ltr">정책요정 폴리씨가 정부 정책을 알기 쉽고 공감할 수 있게 소개해드립니다! 대한민국 정부 대표 채널 &#39;폴리씨&#39; 국민여러분과 소통할 수 있도록 더욱 노력하겠습니다. <a href="https://t.co/eXKCjQIFJ2">pic.twitter.com/eXKCjQIFJ2</a></p>&mdash; 대한민국 정부 (@hellopolicy) <a href="https://twitter.com/hellopolicy/status/867177144815804416?ref_src=twsrc%5Etfw">May 24, 2017</a></blockquote>
