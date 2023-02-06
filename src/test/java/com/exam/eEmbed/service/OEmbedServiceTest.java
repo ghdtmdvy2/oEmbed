@@ -2,12 +2,12 @@ package com.exam.eEmbed.service;
 
 import com.exam.eEmbed.OEmbedTaskApplication;
 import org.json.simple.JSONObject;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = OEmbedTaskApplication.class)
 class OEmbedServiceTest {
@@ -19,7 +19,7 @@ class OEmbedServiceTest {
         // Given
         final String vimeoUrl = "https://vimeo.com/20097015";
         // when
-        JSONObject vimeoOEmbedJsonData = oEmbedService.urlConnector(vimeoUrl);
+        JSONObject vimeoOEmbedJsonData = oEmbedService.findOEmbedData(vimeoUrl);
         // then
         assertThat(vimeoOEmbedJsonData.get("author_name").equals("Depict_tk")).isTrue();
         assertThat(vimeoOEmbedJsonData.get("account_type").equals("basic")).isTrue();
@@ -48,7 +48,7 @@ class OEmbedServiceTest {
         // Given
         final String youtubeUrl = "https://www.youtube.com/watch?v=dBD54EZIrZo";
         // when
-        JSONObject youtubeOEmbedJsonData = oEmbedService.urlConnector(youtubeUrl);
+        JSONObject youtubeOEmbedJsonData = oEmbedService.findOEmbedData(youtubeUrl);
         // then
         assertThat(youtubeOEmbedJsonData.get("author_name").equals("핑크퐁 (인기 동요・동화)")).isTrue();
         assertThat(youtubeOEmbedJsonData.get("access_url").equals("youtube.com/")).isTrue();
@@ -68,7 +68,7 @@ class OEmbedServiceTest {
         // Given
         final String twitterUrl = "https://twitter.com/hellopolicy/status/867177144815804416";
         // when
-        JSONObject twitterOEmbedJsonData = oEmbedService.urlConnector(twitterUrl);
+        JSONObject twitterOEmbedJsonData = oEmbedService.findOEmbedData(twitterUrl);
         // then
         assertThat(twitterOEmbedJsonData.get("author_name").equals("대한민국 정부")).isTrue();
         assertThat(twitterOEmbedJsonData.get("author_url").equals("https://twitter.com/hellopolicy")).isTrue();
@@ -91,7 +91,7 @@ class OEmbedServiceTest {
         // Given
         final String youtubeUrl = "https://Invalid.com/";
         // when
-        JSONObject jsonObject = oEmbedService.urlConnector(youtubeUrl);
+        JSONObject jsonObject = oEmbedService.findOEmbedData(youtubeUrl);
         // then
         assertThat(jsonObject.get("error").equals("error")).isTrue();
         assertThat(jsonObject.get("msg").equals("지원하지 않거나 정확하지 않은 URL 입니다.")).isTrue();

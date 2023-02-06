@@ -20,9 +20,9 @@ public class OEmbedService {
     private final String vimeoOEmbedUrl = "https://vimeo.com/api/oembed.json?url=https://vimeo.com/";
     private final DataHandler dataHandler;
     /**
-        각 url 마다 oEmbed data 를 json 형태로 값을 받기 위한 처리.
+        각 url 마다 oEmbed data 를 요청
      **/
-    public JSONObject urlConnector(String url) {
+    public JSONObject findOEmbedData(String url) {
         try {
             if (url.contains(youtube)) return Util.Handler.convertOEmbedDataIntoJson(url, youtubeOEmbedUrl ,youtube,dataHandler);
             else if (url.contains(twitter)) return Util.Handler.convertOEmbedDataIntoJson(url,twitterOEmbedUrl,twitter, dataHandler);
@@ -37,7 +37,7 @@ public class OEmbedService {
         return getError();
     }
     /**
-        에러가 생겼을 때 해당 에러 창을 뜨게 해주는 함수.
+        에러가 생겼을 때 해당 에러 창을 json 형태로 만들어주기.
      **/
     private JSONObject getError() {
         JSONObject jsonobj = new JSONObject();

@@ -27,7 +27,7 @@ public class OEmbedController {
     @PostMapping("/")
     @ResponseBody
     public JSONObject search(String url){
-        JSONObject jsonObject = oEmbedService.urlConnector(url);
+        JSONObject jsonObject = oEmbedService.findOEmbedData(url);
         return jsonObject;
     }
 }
