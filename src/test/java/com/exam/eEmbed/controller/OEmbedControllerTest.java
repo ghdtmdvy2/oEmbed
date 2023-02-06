@@ -1,6 +1,7 @@
 package com.exam.eEmbed.controller;
 
 import com.exam.eEmbed.OEmbedTaskApplication;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,6 +21,7 @@ class OEmbedControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @DisplayName("/oEmbed/ get 요청")
     public void showSearch() throws Exception {
         ResultActions resultActions = mockMvc.
                 perform(get("/oEmbed/"))
@@ -30,6 +32,7 @@ class OEmbedControllerTest {
                 .andExpect(handler().methodName("showSearch"));
     }
     @Test
+    @DisplayName("body에 url을 담아 /oEmbed/ post 요청")
     public void search() throws Exception {
         ResultActions resultActions = mockMvc.
                 perform(post("/oEmbed/")
