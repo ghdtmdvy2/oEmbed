@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class OEmbedController {
     private final OEmbedService oEmbedService;
     @GetMapping("/search")
-    public String test(){
+    public String showSearch(){
         return "oEmbed";
     }
     @PostMapping("/search")
